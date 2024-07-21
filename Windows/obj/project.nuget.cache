@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Yh5q06PPTYk=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Jeremy\\Documents\\GitHub\\FFP\\Application\\FPP\\FFP.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jeremy\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.7\\microsoft.net.illink.tasks.8.0.7.nupkg.sha512"
+  ],
+  "logs": []
+}
