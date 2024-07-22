@@ -10,20 +10,17 @@ namespace FFP
     {
         static void Main(string[] args)
         {
-            // Extract the embedded .jar file
-            var assembly = Assembly.GetExecutingAssembly();
-            var jarName = "FFP.jar"; // Change 'yourJarFile.jar' to the actual name of your JAR file
-            var tempJarPath = Path.Combine(Path.GetTempPath(), jarName);
-            var name = assembly.GetManifestResourceNames()[0];
-            using (var stream = assembly.GetManifestResourceStream(name)) // Adjust namespace if necessary
-
-            using (var fileStream = new FileStream(tempJarPath, FileMode.Create, FileAccess.Write))
+            // Define the path to the JAR file
+            var jarPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin/FFP.jar");
+            if (!File.Exists(jarPath))
             {
-                stream.CopyTo(fileStream);
+                Console.WriteLine("JAR file not found. Please ensure it is installed correctly.");
+                return;
             }
+
             var javaPath = "java";
             // Construct the argument list to pass to Java
-            var jarArguments = $"-jar \"{tempJarPath}\" " + string.Join(" ", args.Select(arg => $"\"{arg}\""));
+            var jarArguments = $"-jar \"{jarPath}\" " + string.Join(" ", args.Select(arg => $"\"{arg}\""));
 
             var processInfo = new ProcessStartInfo(javaPath, jarArguments)
             {
@@ -36,10 +33,14 @@ namespace FFP
             };
 
             var process = Process.Start(processInfo);
-            process.WaitForExit();
-            process.Close();
-            Console.WriteLine("Press Enter to exit...");
-            Console.ReadLine();
+            if (process != null)
+            {
+                process.WaitForExit();
+                process.Close();
+            } else
+            {
+                Console.WriteLine("Could not start FFP process.");
+            }
         }
     }
 }
