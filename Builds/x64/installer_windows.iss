@@ -2,13 +2,14 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 #define MyAppExeName "ffp.exe"
 #define JarName "ffp.jar"
+#define IconName "icon.ico"
 #define MyAppID "7C5930CE-D55B-4EE7-95AA-98B54369EB8A" ;x64 & x86 GUID
 #define MyAppName "FFP"
 #define MyAppVersion "1.0"
 #define MyAppPublisher "Jeremy Colegrove"
 #define MyAppURL "https://github.com/JeremyMColegrove/FFP"
 #define MyAppAssocName MyAppName + " File"
-#define MyAppAssocExt "FFP.jar"
+#define MyAppAssocExt ".ffp"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
 
 [Setup]
@@ -23,6 +24,7 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
+SetupIconFile={#IconName}
 
 ;UPDATE THIS DEPENDING ON YOUR ARCHITECTURE TYPE
 ArchitecturesAllowed=x64compatible and not arm64
@@ -44,14 +46,16 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [Files]
 Source: "C:\Users\Jeremy\Documents\GitHub\FFP-Executables\Builds\x64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Jeremy\Documents\GitHub\FFP-Executables\{#JarName}"; DestDir: "{app}/bin"; Flags: ignoreversion
+Source: "{#IconName}"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName}"; Flags: uninsdeletekey
-Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#IconName},0"
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\FFP.exe"" ""%1"""; Flags: uninsdeletevalue
-Root: HKCU; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes"; ValueType: string; ValueName: ".ffp"; ValueData: ""
+Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes"; ValueType: string; ValueName: ".ffp"; ValueData: ""
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}"; Flags: preservestringtype
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

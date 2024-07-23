@@ -11,7 +11,7 @@ namespace FFP
         static void Main(string[] args)
         {
             // Define the path to the JAR file
-            var jarPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin/FFP.jar");
+            var jarPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin\\ffp.jar");
             if (!File.Exists(jarPath))
             {
                 Console.WriteLine("JAR file not found. Please ensure it is installed correctly.");

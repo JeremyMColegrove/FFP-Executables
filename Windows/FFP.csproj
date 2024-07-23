@@ -10,6 +10,11 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <Platforms>AnyCPU;ARM64;x64</Platforms>
     <AssemblyName>ffp</AssemblyName>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
 
 </Project>

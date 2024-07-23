@@ -2,6 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 #define MyAppExeName "ffp.exe"
 #define JarName "ffp.jar"
+#define IconName "icon.ico"
 #define MyAppID "7C5930CE-D55B-4EE7-95AA-98B54369EB8A" ;arm GUID
 #define MyAppName "FFP"
 #define MyAppVersion "1.0"
@@ -23,6 +24,7 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
+SetupIconFile={#IconName}
 
 ;UPDATE THIS DEPENDING ON YOUR ARCHITECTURE TYPE
 ArchitecturesAllowed=arm64
@@ -44,6 +46,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [Files]
 Source: "C:\Users\Jeremy\Documents\GitHub\FFP-Executables\Builds\arm\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Jeremy\Documents\GitHub\FFP-Executables\{#JarName}"; DestDir: "{app}/bin"; Flags: ignoreversion
+Source: "{#IconName}"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
