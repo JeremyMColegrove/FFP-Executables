@@ -20,7 +20,7 @@ namespace FFP
 
             var javaPath = "java";
             // Construct the argument list to pass to Java
-            var jarArguments = $"-jar \"{jarPath}\" " + string.Join(" ", args.Select(arg => $"\"{arg}\""));
+            var jarArguments = $"-ea -jar \"{jarPath}\" " + string.Join(" ", args.Select(arg => $"\"{arg}\""));
 
             var processInfo = new ProcessStartInfo(javaPath, jarArguments)
             {
